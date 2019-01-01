@@ -62,8 +62,10 @@ with open('AliceInWonderLand.txt', 'r') as f:
     print(all_words)
     counts = [all_words.count(x) for x in uniques]
     print(counts)
-    print("The most common 7 letter word is", uniques[counts.index(max(counts))])
-
+    print("The occurance is", max(counts))
+    for i in range(len(uniques)):
+        if counts[i] == max(counts):
+            print(uniques[i])
 
 
 # 5.  (2pts, small points challenge problem)
