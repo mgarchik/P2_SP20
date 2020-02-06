@@ -56,6 +56,7 @@ for i in range(len(num_list2)):
         if num_list2[i] % j == 0:
             num_list2[i] = False
             pass
+print(num_list2)
 primes = [x for x in num_list2 if x]
 print(len(primes))
 
