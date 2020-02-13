@@ -1,6 +1,8 @@
-#  Searching
+# Searching
 
-# use forward slashes to go in folders and .. to go "up" a folder
+# use forward slashes to go into folders and .. to go "up" a folder
+import re
+
 file = open('../resources/super_villains.txt', 'r')  # open to read
 print(file)
 
@@ -9,13 +11,13 @@ for line in file:
 
 file.close()
 
-#  strips all non characters
-print("    Hello".strip())
+# .strip() method removes the extra characters at end of text
+print("    Hello ".strip())
 print("World\n".strip())
 print("!")
 
-#  'w' opens to write and overwrites the file
-#  'a' opens to append
+# 'w' opens to write and overwrites the file
+# 'a' opens to append
 file = open('../resources/super_villains.txt', 'a')
 file.write('Lee the Merciless\n')
 file.write('Rohan the Destroyer\n')
@@ -27,30 +29,31 @@ file.write('Owen the Valiant\n')
 file.close()
 
 #  Better way to open close a file (syntactic sugar)
-#  file automatically closes after execution of with
+# file automatically closes after execution of with
 with open('../resources/super_villains.txt') as f:
     for line in f:
         print(line.strip())
 
-#  .read() just imports whole file as a string
+
+# .read() method just imports whole file as a string
 with open('../resources/super_villains.txt') as f:
     read_data = f.read()  # big string
 
-print("\n\nRead Method")
+print("\n\nRead method")
 print(read_data)
 
-#  Reading data into an array (list)
-with open('../resources/super_villains.txt') as f:
+# Reading data into an array (list)
+with open('../resources/super_villains.txt', 'r') as f:
     villains = [x.strip().upper() for x in f]
 
 print(villains)
 
-#  Linear Search (not very efficient but easy)
+# Linear Search (not very efficient but easy)
 
 key = "Vidar the Manic".upper()
 
 i = 0
-while i < (len(villains) - 1) and key != villains[i]:
+while i < (len(villains)) and key != villains[i]:
     i += 1
 
 if i < len(villains):
@@ -58,29 +61,29 @@ if i < len(villains):
 else:
     print(key, "is not in the list")
 
-# try to make this a function
-def linear_search(key, list):
-    '''
+# try to make this into a function
+
+def linear_search(key, my_list):
+    """
     :param key: what you are looking for
     :param list: where you are looking
-    :return: bool did you find it
-    '''
+    :return: bool did you find it?
+    """
     i = 0
-    while i < (len(list) - 1) and key != list[i]:
+    while i < (len(my_list) - 1) and key.upper() != my_list[i]:
         i += 1
 
-    if i < len(list) - 1:
-        print("Found it at position", i)
+    if i < len(villains) - 1:
+        print("Found", key, "at position", i)
         return True
     else:
-        print(key, "is not in the list")
+        print(key, "not found.")
         return False
 
 
-linear_search("matthew", villains)
 
-
-#  Binary Search
+# Binary Search
+villains.sort()
 
 key = "THEODORA THE WICKED"
 lower_bound = 0
@@ -100,4 +103,23 @@ while lower_bound <= upper_bound and not found:
 if found:
     print(key, "was found at position", middle_pos)
 else:
-    print(key, "was not found")
+    print(key, "not found.")
+
+
+# Reading in Alice in Wonderland
+def split_line(line):
+    #  returns a list of all words in line
+    return re.findall('[A-Za-z] + (?:\'[A-Za-z]+)?', line)
+
+
+file = open("../resources/alice_in_wonderland")
+
+for line in file:
+    line = line.strip().upper()
+    print(line.split())
+
+print(split_line("Hello, how are you?"))
+
+
+
+

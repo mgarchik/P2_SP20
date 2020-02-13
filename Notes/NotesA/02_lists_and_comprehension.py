@@ -143,7 +143,7 @@ print(my_list)
 
 #  roll two die 100 times and add it to a 2d list:
 my_list = [[random.randrange(1, 7), random.randrange(1, 7)] for x in range(101)]
-print(my_list)
+print(my_list) 
 
 #  filter so we only show doubles
 my_doubles = [x for x in my_list if x[0] == x[1]]
