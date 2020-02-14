@@ -56,12 +56,13 @@ with open('AliceInWonderLand.txt', 'r') as f:
         line = line.strip().upper()
         words = split_line(line)
         for word in words:
-            all_words.append(word)
+            if len(word) == 7:
+                all_words.append(word)
     uniques = list(set(all_words))
     print(all_words)
     counts = [all_words.count(x) for x in uniques]
     print(counts)
-    print("The most common word is", uniques[counts.index(max(counts))])
+    print("The most common 7 letter word is", uniques[counts.index(max(counts))])
 
 
 

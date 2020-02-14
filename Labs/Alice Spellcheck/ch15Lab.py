@@ -8,12 +8,14 @@ Complete the chapter lab at https://docs.google.com/document/d/1KjrNiE3mUbaeyTPp
 
 import re
 
+
 def split_line(line):
     # This function takes in a line of text and returns
     # a list of words in the line.
     return re.findall('[A-Za-z]+(?:\'[A-Za-z]+)?', line)
 
 
+open('dictionary.txt', 'r')
 
 
 # Challenge:  Find all words that occur in Alice through the looking glass that do NOT occur in Wonderland.
