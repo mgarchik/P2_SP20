@@ -107,6 +107,7 @@ else:
 
 
 # Reading in Alice in Wonderland
+
 def split_line(line):
     #  returns a list of all words in line
     return re.findall('[A-Za-z] + (?:\'[A-Za-z]+)?', line)
