@@ -28,7 +28,6 @@ def linear_search(key, list):
 with open('dictionary.txt', 'r') as dict:
     dictionary_list = [x.strip().upper() for x in dict]
 
-"""
 print("--- Linear Search ---")
 misspellings = 0
 alice200 = open('AliceInWonderLand200.txt', 'r')
@@ -42,7 +41,7 @@ for line in alice200:
             print(word, "in line", on_line)
             misspellings += 1
 print("There were", misspellings, "misspellings")
-"""
+
 
 print("--- Binary Search ---")
 def binary_search(word, list):
@@ -81,7 +80,7 @@ print("There were", misspellings, "misspellings")
 
 
 # Challenge:  Find all words that occur in Alice through the looking glass that do NOT occur in Wonderland.
-alice200 = open('AliceInWonderLand200.txt', 'r')
+alice200 = open('AliceInWonderland.txt', 'r')
 a_words = []
 for line in alice200:
     line = line.strip().upper()
