@@ -86,4 +86,15 @@ print(my_2dlist)
 my_2dlist.sort()
 print(my_2dlist)
 
-my_2dlist.sort(key=)
+my_2dlist.sort(key=lambda x: x[1])  # sorts by second item
+print(my_2dlist)
+
+my_2dlist.sort(key=lambda x: sum(x))
+print(my_2dlist)
+
+my_2dlist.sort(key=lambda x: abs(x[0] - x[1]), reverse=True)
+print(my_2dlist)
+
+# sorted function (returns a new list)
+new_list = sorted(my_2dlist, key=lambda x: sum(x))
+print(new_list)
