@@ -14,7 +14,47 @@
 # (2pts) keeps asking for inputs until they are valid (see while loop from notes)
 # (3pts) calculates the force of gravity in Newtons and print the result to the user in scientific notation to two decimals.
 
+def grav(m1, m2, r):
+    g = 6.67e-11
+    try:
+        answer = float(g * (m1 * m2) / r ** 2)
+    except ZeroDivisionError:
+        answer = "Silly! Dividing by zero? You can't do that!"
+    except ValueError:
+        answer = "That somehow is not a number"
+    return answer
 
 
 
+done = False
+while not done:
+    try:
+        mass1 = float(input("Mass 1:"))
+        done = True
+    except:
+        print("That is not a number, enter a number")
 
+done = False
+while not done:
+    try:
+        mass2 = float(input("Mass 2:"))
+        done = True
+    except:
+        print("That is not a number, enter a number")
+
+done = False
+while not done:
+    try:
+        r = float(input("Distance between objects:"))
+        g = 6.67e-11
+        answer = float(g * (mass1 * mass2) / r ** 2)
+        done = True
+    except ZeroDivisionError:
+        answer = "Silly! Dividing by zero? You can't do that!"
+    except ValueError:
+        answer = "That somehow is not a number"
+    except:
+        print("That is not a number, enter a number")
+
+
+print("The force of gravity is {:.2e}N".format(answer))
