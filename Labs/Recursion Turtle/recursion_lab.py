@@ -1,3 +1,4 @@
+from math import sqrt
 '''
 Turtle Recursion (30pts)
 
@@ -16,3 +17,136 @@ Turtle Recursion (30pts)
   Have fun!
 
 '''
+
+import turtle
+
+my_turtle = turtle.Turtle()
+my_turtle.speed(0)
+
+my_screen = turtle.Screen()
+my_screen.bgcolor('white')
+
+def h_recursion(x, y, width, height, depth):
+    if depth > 0:
+        my_turtle.up()
+        my_turtle.goto(x, y)
+        my_turtle.down()
+
+        # upper right
+        my_turtle.goto(x + width / 2, y)
+        my_turtle.goto(x + width / 2, y + height / 2)
+
+        my_turtle.up()
+        my_turtle.goto(x + width / 2, y)
+        my_turtle.down()
+
+        # lower right
+        my_turtle.goto(x + width / 2, y)
+        my_turtle.goto(x + width / 2, y - height / 2)
+
+        my_turtle.up()
+        my_turtle.goto(x, y)
+        my_turtle.down()
+
+        # upper left
+        my_turtle.goto(x - width / 2, y)
+        my_turtle.goto(x - width / 2, y + height / 2)
+
+        my_turtle.up()
+        my_turtle.goto(x - width / 2, y)
+        my_turtle.down()
+
+        # lower left
+        my_turtle.goto(x - width / 2, y)
+        my_turtle.goto(x - width / 2, y - height / 2)
+
+        h_recursion(x + width / 2, y + height / 2, width / 2, height / 2, depth - 1)
+        h_recursion(x + width / 2, y - height / 2, width / 2, height / 2, depth - 1)
+        h_recursion(x - width / 2, y + height / 2, width / 2, height / 2, depth - 1)
+        h_recursion(x - width / 2, y - height / 2, width / 2, height / 2, depth - 1)
+
+
+# h_recursion(0, 0, 200, 200, 4)
+
+my_screen.clear()
+my_turtle.home()
+
+
+def new_koch(x, y, length, depth, deg):
+    if depth > 0:
+        my_turtle.up()
+        my_turtle.goto(x, y)
+        my_turtle.down()
+
+        my_turtle.setheading(deg)
+        my_turtle.forward(length / 3)
+        new_koch(my_turtle.xcor(), my_turtle.ycor(), length / 3, depth - 1, deg + 60)
+        new_koch(my_turtle.xcor(), my_turtle.ycor(), length / 3, depth - 1, deg - 60)
+        my_turtle.setheading(deg)
+        my_turtle.forward(length / 3)
+        # new_koch(my_turtle.xcor(), my_turtle.ycor(), length / 3, depth - 1, deg - 120)
+
+
+def koch(x, y, length, depth, deg):
+    if depth > 0:
+        my_turtle.up()
+        my_turtle.goto(x, y)
+        my_turtle.down()
+        for i in range(3):      
+            my_turtle.setheading(deg)
+            my_turtle.forward(length / 3)
+            koch(my_turtle.xcor(), my_turtle.ycor(), length / 3, depth - 1, deg + 60)
+            koch(my_turtle.xcor(), my_turtle.ycor(), length / 3, depth - 1, deg - 60)
+            my_turtle.setheading(deg - 60)
+            my_turtle.forward(length / 3)
+
+# new_koch(-300, 0, 200, 4, 0)
+# koch(-300, 0, 200, 3, 0)
+
+my_screen.clear()
+my_turtle.home()
+colors = ['red', 'orange', 'yellow', 'green', 'blue']
+
+
+def sierpenski(x, y, size, depth):
+    deg = 0
+
+    if depth > 0:
+        my_turtle.up()
+        my_turtle.goto(x, y)
+        my_turtle.down()
+        my_turtle.fillcolor(colors[0])
+        my_turtle.begin_fill()
+        for i in range(3):
+            my_turtle.setheading(deg)
+            my_turtle.forward(size)
+            deg += 120
+        sierpenski(x, y, size / 2, depth - 1)
+        sierpenski(x + size / 2, y, size / 2, depth - 1)
+        sierpenski(x + size / 4, y + (sqrt(3) * size / 4), size / 2, depth - 1)
+        my_turtle.end_fill()
+
+
+# sierpenski(-240, -200, 500, 5)
+
+my_screen.clear()
+my_turtle.home()
+
+
+def semi(x, y, size, depth):
+    if depth > 0:
+        my_turtle.up()
+        my_turtle.goto(x, y)
+        my_turtle.down()
+
+        my_turtle.goto(x + size * 2, y)
+        my_turtle.setheading(90)
+        my_turtle.circle(size, 180)
+
+        semi(x, y, size / 2, depth - 1)
+        semi(x + size, y, size / 2, depth - 1)
+
+
+# semi(-240, -200, 200, 5)
+
+my_screen.exitonclick()
