@@ -66,42 +66,7 @@ def h_recursion(x, y, width, height, depth):
         h_recursion(x - width / 2, y - height / 2, width / 2, height / 2, depth - 1)
 
 
-# h_recursion(0, 0, 200, 200, 4)
-
-my_screen.clear()
-my_turtle.home()
-
-
-def new_koch(x, y, length, depth, deg):
-    if depth > 0:
-        my_turtle.up()
-        my_turtle.goto(x, y)
-        my_turtle.down()
-
-        my_turtle.setheading(deg)
-        my_turtle.forward(length / 3)
-        new_koch(my_turtle.xcor(), my_turtle.ycor(), length / 3, depth - 1, deg + 60)
-        new_koch(my_turtle.xcor(), my_turtle.ycor(), length / 3, depth - 1, deg - 60)
-        my_turtle.setheading(deg)
-        my_turtle.forward(length / 3)
-        # new_koch(my_turtle.xcor(), my_turtle.ycor(), length / 3, depth - 1, deg - 120)
-
-
-def koch(x, y, length, depth, deg):
-    if depth > 0:
-        my_turtle.up()
-        my_turtle.goto(x, y)
-        my_turtle.down()
-        for i in range(3):      
-            my_turtle.setheading(deg)
-            my_turtle.forward(length / 3)
-            koch(my_turtle.xcor(), my_turtle.ycor(), length / 3, depth - 1, deg + 60)
-            koch(my_turtle.xcor(), my_turtle.ycor(), length / 3, depth - 1, deg - 60)
-            my_turtle.setheading(deg - 60)
-            my_turtle.forward(length / 3)
-
-# new_koch(-300, 0, 200, 4, 0)
-# koch(-300, 0, 200, 3, 0)
+h_recursion(0, 0, 200, 200, 4)
 
 my_screen.clear()
 my_turtle.home()
@@ -127,7 +92,7 @@ def sierpenski(x, y, size, depth):
         my_turtle.end_fill()
 
 
-# sierpenski(-240, -200, 500, 5)
+sierpenski(-240, -200, 500, 5)
 
 my_screen.clear()
 my_turtle.home()
@@ -147,6 +112,34 @@ def semi(x, y, size, depth):
         semi(x + size, y, size / 2, depth - 1)
 
 
-# semi(-240, -200, 200, 5)
+semi(-240, -200, 200, 5)
+
+my_screen.clear()
+my_turtle.home()
+
+def koch(x, y, length, depth):
+    if depth > 0:
+        my_turtle.up()
+        my_turtle.goto(x, y)
+        my_turtle.down()
+
+        koch(my_turtle.xcor(), my_turtle.ycor(), length, depth - 1)
+        my_turtle.left(60)
+        koch(my_turtle.xcor(), my_turtle.ycor(), length, depth - 1)
+        my_turtle.right(120)
+        koch(my_turtle.xcor(), my_turtle.ycor(), length, depth - 1)
+        my_turtle.left(60)
+        koch(my_turtle.xcor(), my_turtle.ycor(), length, depth - 1)
+    else:
+        my_turtle.forward(length)
+
+
+my_turtle.setheading(0)
+koch(-200, 100, 2, 5)
+my_turtle.right(120)
+koch(my_turtle.xcor(), my_turtle.ycor(), 2, 5)
+my_turtle.right(120)
+koch(my_turtle.xcor(), my_turtle.ycor(), 2, 5)
+
 
 my_screen.exitonclick()

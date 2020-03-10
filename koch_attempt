@@ -1,0 +1,35 @@
+import turtle
+
+my_turtle = turtle.Turtle()
+my_turtle.speed(0)
+
+my_screen = turtle.Screen()
+my_screen.bgcolor('white')
+
+
+def koch(x, y, length, depth):
+    if depth > 0:
+        my_turtle.up()
+        my_turtle.goto(x, y)
+        my_turtle.down()
+
+        koch(my_turtle.xcor(), my_turtle.ycor(), length, depth - 1)
+        my_turtle.left(60)
+        koch(my_turtle.xcor(), my_turtle.ycor(), length, depth - 1)
+        my_turtle.right(120)
+        koch(my_turtle.xcor(), my_turtle.ycor(), length, depth - 1)
+        my_turtle.left(60)
+        koch(my_turtle.xcor(), my_turtle.ycor(), length, depth - 1)
+    else:
+        my_turtle.forward(length)
+
+
+my_turtle.setheading(0)
+koch(-200, 100, 2, 5)
+my_turtle.right(120)
+koch(my_turtle.xcor(), my_turtle.ycor(), 2, 5)
+my_turtle.right(120)
+koch(my_turtle.xcor(), my_turtle.ycor(), 2, 5)
+
+my_screen.exitonclick()
+
