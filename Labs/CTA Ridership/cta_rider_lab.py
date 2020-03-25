@@ -16,7 +16,6 @@ It has been updated with 2018 data, but not yet with 2019 unfortunately
     I think that the increase in traffic over the past 10 years is responsible for the increase in rail usage.
     I believe that the amount of total riders decreased incrementally because of the introduction of bikes and ride share technology like divvy, uber, and lyft
 
-
 '''
 
 import csv
