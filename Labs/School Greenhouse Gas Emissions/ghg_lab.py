@@ -39,3 +39,75 @@ Note 2:  This is a tough assignment to do on your own.  Do your best with what y
 '''
 
 
+import csv
+import matplotlib.pyplot as plt
+import numpy as np
+import matplotlib.colors
+import matplotlib.cm
+
+with open("Chicago_Energy_Benchmarking.csv") as f:
+    reader = csv.reader(f)
+    raw_data = list(reader)
+
+header = raw_data.pop(0)
+print(header)
+
+ghg_index = header.index("Total GHG Emissions (Metric Tons CO2e)")
+sqft_index = header.index("Gross Floor Area - Buildings (sq ft)")
+type_index = header.index("Primary Property Type")
+name_index = header.index("Property Name")
+year_index = header.index("Data Year")
+
+
+valid_data = []
+
+for building in raw_data:
+    try:
+        float(building[ghg_index])
+        float(building[sqft_index])
+        if building[type_index] == "K-12 School" and building[0] == "2018":
+            valid_data.append(building)
+    except:
+        pass
+
+ghg = [float(x[ghg_index]) for x in valid_data]
+sqft = [float(x[sqft_index]) for x in valid_data]
+names = [x[name_index] for x in valid_data]
+
+p = np.polyfit(sqft, ghg, 1)
+x = [x for x in range(700000)]
+y = [(p[0] * y + p[1]) for y in x]
+
+print(p)
+
+# ratios = [(sqft[x] * p[0]) / (ghg[x] * -p[1]) for x in range(len(names))]
+ratios = [valid_data[x][ghg_index + 1] for x in range(len(names))]
+mx = max(ratios)
+mn = min(ratios)
+print(mx)
+print(mn)
+
+
+plt.figure("School Emissions", figsize=(10, 6))
+plt.grid(color="gray")
+
+plt.scatter(sqft, ghg, cmap='RdYlGn', label='Other Schools', c=ratios, norm=matplotlib.colors.Normalize(vmax=mx-170, vmin=mn, clip=True), alpha=.7)
+plt.scatter(sqft[names.index("Francis W Parker School")], ghg[names.index("Francis W Parker School")],
+            c='blue', label='Francis W. Parker')
+
+plt.ylabel("Total GHG Emissions (Metric Tons CO2e)")
+plt.xlabel("Gross Floor Area - Buildings (sq ft)")
+plt.title("Emissions vs Area")
+
+plt.annotate(names[names.index("Francis W Parker School")], xy=(sqft[names.index("Francis W Parker School")], ghg[names.index("Francis W Parker School")]))
+
+p = np.polyfit(sqft, ghg, 1)
+x = [x for x in range(700000)]
+y =[(p[0] * y + p[1]) for y in x]
+plt.plot(x, y)
+
+plt.legend()
+
+plt.show()
+
+
