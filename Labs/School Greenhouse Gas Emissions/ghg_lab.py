@@ -35,7 +35,7 @@ Maybe you can try one of the following or think up your own:
 - Add colleges and universities (use a different marker type)
 
 
-Note 2:  This is a tough assignment to do on your own.  Do your best with what you have.
+Note 2:  This is a tough assignment to do on your own.  Do your best with what you have.  We will do
 '''
 
 
@@ -81,7 +81,7 @@ y = [(p[0] * y + p[1]) for y in x]
 print(p)
 
 # ratios = [(sqft[x] * p[0]) / (ghg[x] * -p[1]) for x in range(len(names))]
-ratios = [valid_data[x][ghg_index + 1] for x in range(len(names))]
+ratios = [sqft[x] / ghg[x] for x in range(len(names))]
 mx = max(ratios)
 mn = min(ratios)
 print(mx)
@@ -91,9 +91,10 @@ print(mn)
 plt.figure("School Emissions", figsize=(10, 6))
 plt.grid(color="gray")
 
-plt.scatter(sqft, ghg, cmap='RdYlGn', label='Other Schools', c=ratios, norm=matplotlib.colors.Normalize(vmax=mx-170, vmin=mn, clip=True), alpha=.7)
+plt.scatter(sqft, ghg, cmap='RdYlGn', c=ratios, norm=matplotlib.colors.Normalize(vmax=mx-170, vmin=mn, clip=True), alpha=.7)
 plt.scatter(sqft[names.index("Francis W Parker School")], ghg[names.index("Francis W Parker School")],
             c='blue', label='Francis W. Parker')
+plt.scatter([0], [6000], c='white', label="Other Schools")
 
 plt.ylabel("Total GHG Emissions (Metric Tons CO2e)")
 plt.xlabel("Gross Floor Area - Buildings (sq ft)")
