@@ -1,5 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
+import time
+from selenium import webdriver
 
 # SCRAPING PROBLEMS
 # Twitter Scraping (15pts)
@@ -17,7 +19,6 @@ twit_url = "https://twitter.com/arielhelwani"
 twit_page = requests.get(twit_url)
 
 twit_soup = BeautifulSoup(twit_page.text, "html.parser")
-print(twit_soup.prettify())
 
 # tweets = twit_soup.find_all(aria_label="Timeline: Ariel Helwani’s Tweets", class_="css-1dbjc4n")
 # tweet_divs = twit_soup.find_all(id="accessible-list-2")
@@ -47,6 +48,33 @@ weather_url = "https://weather.com/weather/tenday/l/368d5a4e7d156c3f508cb653f950
 weather_page = requests.get(weather_url)
 
 weather_soup = BeautifulSoup(weather_page.text, "html.parser")
-print(weather_soup.prettify())
 
+days = weather_soup.find_all("span", class_="day-detail clearfix")
+day_list = [x.text for x in days]
+print(day_list)
+
+descriptions = weather_soup.find_all("td", class_="description")
+description_list = [x.span.text for x in descriptions]
+print(description_list)
+
+his = weather_soup.find_all("td", class_="temp")
+hi_list = [x.div.span.text for x in his]
+print(hi_list)
+
+lows = weather_soup.find_all("td", class_="temp")
+low_list = [x.div.span.next_sibling.next_sibling.text for x in his]
+print(low_list)
+
+precips = weather_soup.find_all("td", class_="precip")
+precip_list = [x.text for x in precips]
+print(precip_list)
+
+
+winds = weather_soup.find_all("td", class_="wind")
+wind_list = [x.span.text for x in winds]
+print(wind_list)
+
+for i in range(10):
+    print("\nOn {0} it will be {1} and have a max temperature of {2} degrees Fahrenheit and a min temperature of {3} degrees Fahrenheit with a {4} chance of precipitation and winds of {5}"
+          .format(day_list[i],description_list[1], hi_list[i], low_list[i], precip_list[i], wind_list[i]))
 
