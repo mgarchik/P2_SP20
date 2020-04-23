@@ -18,3 +18,66 @@ print(type(my_tuple))
 
 # If you have extra time, try to put some html into the popup.
 
+import folium
+import csv
+
+with open('CTA_-_System_Information_-_List_of__L__Stops (1).csv') as f:
+    reader = csv.reader(f)
+    data = list(reader)
+
+cta_map = folium.Map(location=[41.8781, -87.6298])
+
+print(data.pop(0))
+
+names = [x[2] for x in data]
+lats = [float(eval(x[-1])[0]) for x in data]
+longs = [float(eval(x[-1])[1]) for x in data]
+colors = []
+icon_color = []
+
+for i in range(len(names)):
+    if data[i][7] == "true":
+        colors.append('red')
+        icon_color.append('white')
+    elif data[i][8] == "true":
+        colors.append('blue')
+        icon_color.append('white')
+    elif data[i][9] == "true":
+        colors.append('green')
+        icon_color.append('white')
+    elif data[i][10] == "true":
+        colors.append('white')  # brown
+        icon_color.append('saddlebrown')
+    elif data[i][11] == "true":
+        colors.append('purple')
+        icon_color.append('white')
+    elif data[i][12] == "true":
+        colors.append('purple')
+        icon_color.append('white')
+    elif data[i][13] == "true":
+        colors.append('white')  # yellow
+        icon_color.append('yellow')
+    elif data[i][14] == "true":
+        colors.append('pink')
+        icon_color.append('white')
+    elif data[i][15] == "true":
+        colors.append('orange')
+        icon_color.append('white')
+    else:
+        colors.append('white')
+        icon_color.append('white')
+
+print(colors)
+print(len(colors))
+print(len(names))
+
+for i in range(len(data)):
+    folium.Marker(location=[lats[i], longs[i]],
+                  popup='<b>{}<b>'.format(names[i]),
+
+                  icon=folium.Icon(color=colors[i], icon_color=icon_color[i], icon='train', prefix='fa')
+                  ).add_to(cta_map)
+
+cta_map.save('my_cta_map.html')
+
+
