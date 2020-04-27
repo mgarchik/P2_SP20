@@ -39,13 +39,9 @@ print(mr_leed)
 # cannot be accessed by index number
 
 # Build a simple dict
-community = {'genre': ['comedy'],
-             'creators': ['Dan Harmon'],
-             'starring': ['Joel McHale', 'Gillian Jacobs', "Danny Pudi"],
-             'no_season': 6
-             }
+community = {'genre': ['comedy'], 'creators': ['Dan Harmon'],
+             'starring': ['Joel McHale', 'Gillian Jacobs', "Danny Pudi"], 'no_season': 6, 'no_episodes': 110}
 
-community['no_episodes'] = 110
 print(community['no_episodes'])
 
 # Change items in a dict
@@ -55,3 +51,14 @@ print(community['starring'])
 # increment item
 community['no_episodes'] += 1
 print(community['no_episodes'])
+
+# keys method
+print(community.keys())
+print(list(community.keys()))
+
+# values
+print(community.values())
+print(list(community.values()))
+
+
+

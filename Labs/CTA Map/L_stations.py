@@ -20,6 +20,7 @@ print(type(my_tuple))
 
 import folium
 import csv
+import html
 
 with open('CTA_-_System_Information_-_List_of__L__Stops (1).csv') as f:
     reader = csv.reader(f)
@@ -71,13 +72,20 @@ print(colors)
 print(len(colors))
 print(len(names))
 
+
 for i in range(len(data)):
     folium.Marker(location=[lats[i], longs[i]],
-                  popup='<b>{}<b>'.format(names[i]),
-
+                  popup='<a href="https://google.com"><b>names[i]<b></a>',
                   icon=folium.Icon(color=colors[i], icon_color=icon_color[i], icon='train', prefix='fa')
                   ).add_to(cta_map)
 
+"""
+for i in range(len(data)):
+    folium.Marker(location=[lats[i], longs[i]],
+                  popup=('<b>{}<b>'.format(names[i])),
+                  icon=folium.Icon(color=colors[i], icon_color=icon_color[i], icon='train', prefix='fa')
+                  ).add_to(cta_map)
+"""
 cta_map.save('my_cta_map.html')
 
 
