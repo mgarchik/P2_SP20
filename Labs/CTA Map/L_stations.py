@@ -75,7 +75,7 @@ print(len(names))
 
 for i in range(len(data)):
     folium.Marker(location=[lats[i], longs[i]],
-                  popup='<a href="https://google.com"><b>names[i]<b></a>',
+                  popup="""<a href="https://google.com/maps/@{},{},18z"target="_blank",><b>{}<b></a>""".format(lats[i], longs[i], names[i]),
                   icon=folium.Icon(color=colors[i], icon_color=icon_color[i], icon='train', prefix='fa')
                   ).add_to(cta_map)
 

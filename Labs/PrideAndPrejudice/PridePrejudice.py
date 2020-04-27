@@ -4,10 +4,16 @@ Pride and Prejudice (25pts)
 This lab is largely review of: lists, comprehensions, requests, string methods, matplotlib.
 The only new item here is using a dictionary (dict).
 
-We will use list, dictionary, and graphing skills to do a basic analysis of Jane Austen's Pride and Prejudice.  Your task is to create a bar graph of the 25 most common words.
+We will use list, dictionary, and graphing skills to do a basic analysis of Jane Austen's Pride and Prejudice.
+Your task is to create a bar graph of the 25 most common words.
 
 
-A common Python pattern to count objects, produce histograms, or update stats is to make calls to a dictionary as you iterate through a list. For example, given a list of words, you can create a dictionary to store counts and then iterate through the list of words, checking how many times each word has appeared using your dictionary, and updating the dictionary count now that you've seen that word again.
+A common Python pattern to count objects, produce histograms,
+or update stats is to make calls to a dictionary as you iterate through a list.
+For example, given a list of words,
+you can create a dictionary to store counts and then iterate through the list of words,
+checking how many times each word has appeared using your dictionary,
+and updating the dictionary count now that you've seen that word again.
 '''
 
 
@@ -21,6 +27,17 @@ A common Python pattern to count objects, produce histograms, or update stats is
 # Create Bar Graph (5pts)
 # Include descriptive titles and labels (5pts)
 
+import requests
+import matplotlib.pyplot as plt
+
+url = "https://www.gutenberg.org/files/1342/1342-0.txt"
+pride_prejudice = requests.get(url).text
+print(pride_prejudice[:1000])
+
+wordlist = pride_prejudice.split()
+wordlist = [x.upper().strip(' ?.:;!\\/<>{}[]Ï»¿\n\t*#_') for x in wordlist if x.upper().strip(' ?.:;!\\/<>{}[]Ï»¿\n\t*#_') != '']
+
+print(wordlist[:1000])
 
 # CHALLENGE (OPTIONAL)
 # Here is a list of the 1000 most common words in English: https://gist.githubusercontent.com/deekayen/4148741/raw/98d35708fa344717d8eee15d11987de6c8e26d7d/1-1000.txt
