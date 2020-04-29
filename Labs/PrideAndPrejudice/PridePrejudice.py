@@ -21,7 +21,7 @@ and updating the dictionary count now that you've seen that word again.
 # Get text from https://www.gutenberg.org/files/1342/1342-h/1342-h.htm - Use requests library.
 # Split the transcript into words - Use split and strip methods and store results in a list.
 # Create a dictionary object to store the word counts
-# Iterate through the list/text of Macbeth
+# Iterate through the list/text of Pride and Prejudice
 # Update word counts on your dict (10pts)
 # Sort words by counts in descending order (5pts)
 # Create Bar Graph (5pts)
@@ -38,10 +38,31 @@ wordlist = pride_prejudice.split()
 wordlist = [x.upper().strip(' ?.:;!\\/<>{}[]Ï»¿\n\t*#_') for x in wordlist if x.upper().strip(' ?.:;!\\/<>{}[]Ï»¿\n\t*#_') != '']
 
 print(wordlist[:1000])
+pp_dict = {}
+for i in range(len(wordlist)):
+    if wordlist[i] in pp_dict.keys():
+        pp_dict[wordlist[i]] += 1
+    else:
+        pp_dict[wordlist[i]] = 1
+
+print(pp_dict)
+
+sorted_d = sorted(pp_dict.items(), key=lambda x: -x[1])
+print(sorted_d)
+
+top25 = sorted_d[:25]
+print(top25)
+
+words = [x[0] for x in top25]
+amts = [x[1] for x in top25]
+plt.bar(words, amts)
+plt.xticks(rotation='vertical')
+
+plt.show()
 
 # CHALLENGE (OPTIONAL)
 # Here is a list of the 1000 most common words in English: https://gist.githubusercontent.com/deekayen/4148741/raw/98d35708fa344717d8eee15d11987de6c8e26d7d/1-1000.txt
-# Make your plot show the 25 most common words in Hamlet NOT in this list.
+# Make your plot show the 25 most common words in Pride and Prejudice NOT in this list.
 
 # MORE CHALLENGES
 # look at Project Gutenberg, and try another book and see if your algorithms hold up.
