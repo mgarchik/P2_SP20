@@ -1,16 +1,16 @@
 # Pandas!
+
 import random
 import pandas as pd
-
+pd.set_option('display.max_columns', None)
 # lists > dicts > dataframes(series)
 
-# Series are pandas arrays (1d array)
-
+# Series are pandas arrays (1d arrays)
 s = [random.randrange(100) for x in range(10)]
 my_series = pd.Series(s)
 print(my_series)
 print(type(my_series))  # pd.Series type
-print(list(my_series))  # conversion to a list is simple
+print(list(my_series))  # conversion to list is simple
 
 # make a df (DataFrame) from a dictionary
 d = {'col1': [1,2,3],
@@ -47,14 +47,17 @@ rank_ownership = df3['Rank by rate of ownership']
 print(type(rank_ownership))
 print(rank_ownership)
 
-# slicing dataframe using iloc[]  (index location)
+# slicing dataframe using iloc[]   (index location)
 print(df3.iloc[:5, 2])  # slice by row column
 print(df3.iloc[:, [1, 6]])  # select by sending in a list of columns or rows
 
 # slicing dataframe using loc[]
-print(df3.loc[:, 'ISO code', 'Rank by rate ownership'])
-iso_and_rank = df3.loc[:, 'ISO code', 'Rank by rate ownership']
+print(df3.loc[:, ['ISO code', 'Rank by rate of ownership']])
+iso_and_rank = df3.loc[:, ['ISO code', 'Rank by rate of ownership']]
 print(type(iso_and_rank))
 
+
+
+# World cup matches
 
 
