@@ -59,15 +59,14 @@ print(type(iso_and_rank))
 
 # WORLD CUP
 
-import pandas as pd
 x = 5
 x  # in ipython/console, this automatically prints
 
-df = pd.read_csv('/Users/alee/PycharmProjects/P2_SP20/Notes/NotesB/world_cup_matches.csv')  # use full path when working in console
+df = pd.read_csv('/Users/garch/PycharmProjects/P2_SP20/Notes/NotesA/world_cup_matches.csv')  # use full path when working in console
 
-
+"""
 # iloc (only useful for index number)
-df.iloc[3:6]  # look at 3, 4, 5 matches
+print(df.iloc[3:6])  # look at 3, 4, 5 matches
 df.iloc[3:6, [4, 7]]   # cols 4 and 7 for index/rows 3to5
 
 # loc
@@ -88,7 +87,7 @@ df.loc[df['Home Team Name'] == 'Netherlands'].count()
 
 # All games by Netherlands
 df.loc[(df['Home Team Name'] == "Netherlands") | (df['Away Team Name'] == "Netherlands")]
-
+"""
 
 
 
